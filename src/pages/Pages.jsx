@@ -6,5 +6,4 @@ function Pages() {
     <Home/>
   )
 }
-
 export default Pages
