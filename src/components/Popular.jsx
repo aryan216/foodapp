@@ -10,13 +10,21 @@ function Popular() {
   },[])
   const getPopular = async()=> {
       //console.log(process.env.REACT_APP_API);
+      const check=localStorage.getItem("popular");
+      if(check){
+        setPopular(JSON.parse(check));
+      }
+      else{
       const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=07e18fb92d9e48d58e7b42e0d35e2178&number=10`,{
       method:"get",
       header:"content-type/application.json"
     });
     const data= await api.json();
+    localStorage.setItem("popular",JSON.stringify(data.recipes));
     setPopular(data.recipes);
+    console.log(data.recipes);
   }
+  };
   
   return (
     <Wrapper>
@@ -34,6 +42,7 @@ function Popular() {
           <Card>
             <p>{recipe.title}</p>
             <img src={recipe.image} alt={recipe.title} />
+            <Gradient/>
           </Card>
           </SplideSlide>
         );
@@ -48,7 +57,7 @@ function Popular() {
 `;
 
 const Card=styled.div`
-  min-height:25rem;
+  min-height:13rem;
   border-radius:2rem;
   overflow:hidden;
   position:relative;
@@ -66,9 +75,9 @@ const Card=styled.div`
     left:50%;
     z-index:10;
     width;100%;
-    bottom:0%;
+    bottom: -30%;
     transform:translate(-50%,0%);
-    color:white;
+    color:pink;
     text-align:center;
     height:40%;
     display:flex;
