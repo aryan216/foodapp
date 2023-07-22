@@ -15,7 +15,7 @@ function Veggies() {
         setVeggies(JSON.parse(check));
       }
       else{
-      const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=07e18fb92d9e48d58e7b42e0d35e2178&number=10`,{
+      const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=07e18fb92d9e48d58e7b42e0d35e2178&number=10&tags=vegetarian`,{
       method:"get",
       header:"content-type/application.json"
     });
@@ -30,7 +30,7 @@ function Veggies() {
     <Wrapper>
       <h3>Vegetarian picks</h3>
       <Splide options={{
-        perPage: 4,
+        perPage: 3,
         arrows: false,
         pagination:false,
         drag:"free",
